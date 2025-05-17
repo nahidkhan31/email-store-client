@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from "sweetalert2";
 
 const AddEmail = () => {
   const handleSubmit = (e) => {
@@ -17,7 +18,15 @@ const AddEmail = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("after adding emails to db", data);
+        if (data.insertedId) {
+          console.log("after adding emails to db", data);
+          Swal.fire({
+            title: "Email Added Successfully..",
+            icon: "success",
+            draggable: true,
+          });
+          form.reset();
+        }
       });
   };
   return (

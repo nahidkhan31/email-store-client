@@ -16,6 +16,7 @@ const router = createBrowserRouter([
       {
         index: true,
         path: "/",
+        loader: () => fetch("http://localhost:3000/emails"),
         Component: Home,
       },
       {
