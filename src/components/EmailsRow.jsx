@@ -3,7 +3,7 @@ import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 
-const EmailsRow = ({ user, index }) => {
+const EmailsRow = ({ user, index, emails, setEmails }) => {
   const { _id, name, email, gender, status, photo } = user;
   //   color
   const statusClass =
@@ -35,6 +35,9 @@ const EmailsRow = ({ user, index }) => {
                 text: "Your file has been deleted.",
                 icon: "success",
               });
+              //   remove the email from the state
+              const remainingEmails = emails.filter((eml) => eml._id !== _id);
+              setEmails(remainingEmails);
             }
           });
       }

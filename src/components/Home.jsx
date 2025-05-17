@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLoaderData } from "react-router";
 import EmailsRow from "./EmailsRow";
 import { FaUserPlus } from "react-icons/fa";
 
 const Home = () => {
-  const emails = useLoaderData();
-  console.log(emails);
+  const initialEmails = useLoaderData();
+  // console.log(emails);
+  const [emails, setEmails] = useState(initialEmails);
   return (
     <div className="min-h-screen bg-white border border-green-400 p-8">
       <div className="mb-5 text-center">
@@ -31,7 +32,12 @@ const Home = () => {
           </thead>
           <tbody className="">
             {emails.map((user, index) => (
-              <EmailsRow key={user._id} user={user} index={index}></EmailsRow>
+              <EmailsRow
+                key={user._id}
+                user={user}
+                index={index}
+                emails={emails}
+                setEmails={setEmails}></EmailsRow>
             ))}
           </tbody>
         </table>
