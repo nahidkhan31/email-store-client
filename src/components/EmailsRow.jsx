@@ -1,5 +1,6 @@
 import React from "react";
 import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
+import { Link } from "react-router";
 import Swal from "sweetalert2";
 
 const EmailsRow = ({ user, index }) => {
@@ -22,11 +23,20 @@ const EmailsRow = ({ user, index }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Swal.fire({
-        //   title: "Deleted!",
-        //   text: "Your file has been deleted.",
-        //   icon: "success",
-        // });
+        // if you want to delete so data pass to the db
+        fetch(`http://localhost:3000/emails/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          });
       }
     });
   };
@@ -49,12 +59,16 @@ const EmailsRow = ({ user, index }) => {
       <td className={statusClass}>{status}</td>
 
       <td className="flex space-x-2 mt-3">
-        <button className="btn btn-xs btn-outline text-purple-600">
-          <FaEye />
-        </button>
-        <button className="btn btn-xs btn-outline text-purple-600">
-          <FaEdit />
-        </button>
+        <Link to={`/emailDetails/${_id}`}>
+          <button className="btn btn-xs btn-outline text-purple-600">
+            <FaEye />
+          </button>
+        </Link>
+        <Link to={`/updateEmail/${_id}`}>
+          <button className="btn btn-xs btn-outline text-purple-600">
+            <FaEdit />
+          </button>
+        </Link>
         <button
           onClick={() => handleDelete(_id)}
           className="btn btn-xs btn-outline text-purple-600">

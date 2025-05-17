@@ -7,6 +7,7 @@ import MainLayouts from "./layouts/MainLayouts.jsx";
 import Home from "./components/Home.jsx";
 import AddEmail from "./components/AddEmail.jsx";
 import UpdateEmail from "./components/UpdateEmail.jsx";
+import EmailDetails from "./components/EmailDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,8 +25,12 @@ const router = createBrowserRouter([
         Component: AddEmail,
       },
       {
-        path: "/updateEmail",
+        path: "/updateEmail/:id",
         Component: UpdateEmail,
+      },
+      {
+        path: "/emailDetails/:id",
+        Component: EmailDetails,
       },
     ],
   },
