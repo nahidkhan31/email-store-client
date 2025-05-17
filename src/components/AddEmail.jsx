@@ -4,6 +4,21 @@ const AddEmail = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
+    const formData = new FormData(form);
+    const newEmail = Object.fromEntries(formData.entries());
+    console.log(newEmail);
+    // sent data to the server.....
+    fetch("http://localhost:3000/emails", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newEmail),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("after adding emails to db", data);
+      });
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-white border border-green-400 p-8">
