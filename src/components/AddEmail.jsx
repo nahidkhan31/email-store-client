@@ -1,4 +1,6 @@
 import React from "react";
+import { FaBackward, FaUserPlus } from "react-icons/fa";
+import { Link } from "react-router";
 import Swal from "sweetalert2";
 
 const AddEmail = () => {
@@ -119,6 +121,14 @@ const AddEmail = () => {
             Save
           </button>
         </form>
+        <div className="mb-4 mt-5">
+          <Link to="/">
+            <button className="btn btn-sm btn-outline btn-primary">
+              <FaBackward className="mr-2" />
+              Back Home
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -32,6 +32,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/emailDetails/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/emails/${params.id}`),
         Component: EmailDetails,
       },
     ],
